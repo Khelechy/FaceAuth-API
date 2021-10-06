@@ -24,6 +24,16 @@ namespace FaceAuth.Controllers
             _userServices = userServices;
         }
 
+
+        [HttpGet("get-staffs")]
+        public async Task<IActionResult> GetUser()
+        {
+            var users = await _userServices.GetUsers();
+            if (users == null)
+                return BadRequest(new { error = "No users" });
+            return Ok(users);
+        }
+
         [HttpPost("add-person")]
         public async Task<IActionResult> AddPerson([FromBody]AddPersonViewModel model)
         {

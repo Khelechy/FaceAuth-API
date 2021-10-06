@@ -11,6 +11,7 @@ namespace FaceAuth.Services
     public interface IUserServices
     {
         Task<User> GetUserById(Guid id);
+        Task<IEnumerable<User>> GetUsers();
     }
     public class UserServices : IUserServices
     {
@@ -23,6 +24,11 @@ namespace FaceAuth.Services
         public async Task<User> GetUserById(Guid id)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            return await _context.Users.ToListAsync();
         }
     }
 }
