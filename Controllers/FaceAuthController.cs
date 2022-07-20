@@ -59,7 +59,27 @@ namespace FaceAuth.Controllers
             {
                 return BadRequest(new { error = "User not found in Database" });
             }
+            await _userServices.AddLog(user.Email, user.Id);
             return Ok(user);
+        }
+
+        [HttpGet("get-logs")]
+        public async Task<IActionResult> GetLogs()
+        {
+            var logs = await _userServices.GetUserLogs();
+            return Ok(logs);
+        }
+
+        [HttpGet("get-user-log")]
+        public async Task<IActionResult> GetUserLogs(string email)
+        {
+            var (success, logs) = await _userServices.GetUserLogForUser(email);
+            if (!success)
+            {
+                return BadRequest(new { error = "no user found with such email" });
+
+            }
+            return Ok(logs);
         }
     }
 }
