@@ -30,7 +30,7 @@ namespace FaceAuth
         {
             services.AddControllers();
 
-            services.AddDbContext<FaceAuthContext>(option => option.UseSqlServer
+            services.AddDbContext<FaceAuthContext>(option => option.UseNpgsql
             (Configuration.GetConnectionString("FaceAuthConnection")));
 
             services.AddScoped<IAzureServices, AzureServices>();

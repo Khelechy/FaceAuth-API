@@ -86,6 +86,7 @@ namespace FaceAuth.Services
                     Email = model.Email,
                     LastName = model.LastName,
                     UserGroupId = personGroupId,
+                    Role = model.Role,
                     UserData = $"{person.PersonId}|{model.FirstName + " " + model.LastName}|{model.Email}",
                 };
 
