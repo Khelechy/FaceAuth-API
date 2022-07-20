@@ -9,6 +9,7 @@ namespace FaceAuth.Models
     {
         public int Id{ get; set; }
         public string Email { get; set; }
+        public string FullName { get; set; }
         public Guid UserId { get; set; }
         public DateTime LastLogTime { get; set; }
     }

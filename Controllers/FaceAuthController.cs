@@ -59,7 +59,7 @@ namespace FaceAuth.Controllers
             {
                 return BadRequest(new { error = "User not found in Database" });
             }
-            await _userServices.AddLog(user.Email, user.Id);
+            await _userServices.AddLog(user.Email, $"{user.FirstName + " " + user.LastName}", user.Id);
             return Ok(user);
         }
 

@@ -13,7 +13,7 @@ namespace FaceAuth.Services
         Task<User> GetUserById(Guid id);
         Task<IEnumerable<User>> GetUsers();
         Task<IEnumerable<UserLog>> GetUserLogs();
-        Task AddLog(string email, Guid userId);
+        Task AddLog(string email, string fullname, Guid userId);
         Task<Tuple<bool,IEnumerable<UserLog>>> GetUserLogForUser(string email);
     }
     public class UserServices : IUserServices
@@ -25,12 +25,13 @@ namespace FaceAuth.Services
             _context = context;
         }
 
-        public async Task AddLog(string email, Guid userId)
+        public async Task AddLog(string email, string fullname,  Guid userId)
         {
             var userLog = new UserLog
             {
                 Email = email,
                 UserId = userId,
+                FullName = fullname,
                 LastLogTime = DateTime.Now
             };
 

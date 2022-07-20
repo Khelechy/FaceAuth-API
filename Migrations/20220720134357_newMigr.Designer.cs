@@ -3,15 +3,17 @@ using System;
 using FaceAuth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FaceAuth.Migrations
 {
     [DbContext(typeof(FaceAuthContext))]
-    partial class FaceAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20220720134357_newMigr")]
+    partial class newMigr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
