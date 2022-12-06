@@ -6,11 +6,9 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+COPY . /src
 WORKDIR /src
-COPY ["FaceAuth/FaceAuth.csproj", "FaceAuth/"]
-RUN dotnet restore "FaceAuth/FaceAuth.csproj"
-COPY . .
-WORKDIR "/src/FaceAuth"
+RUN ls
 RUN dotnet build "FaceAuth.csproj" -c Release -o /app/build
 
 FROM build AS publish
@@ -19,4 +17,4 @@ RUN dotnet publish "FaceAuth.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", ".dll"]
+ENTRYPOINT ["dotnet", "FaceAuth.dll"]
