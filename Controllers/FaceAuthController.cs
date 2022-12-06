@@ -46,7 +46,7 @@ namespace FaceAuth.Controllers
 
         }
 
-        [HttpGet("recognize-person")]
+        [HttpPost("recognize-person")]
         public async Task<IActionResult> RecognizePerson([FromBody]RecognizePersonViewModel model)
         {
             Guid personId = await _azureServices.Recognize(model);
