@@ -57,7 +57,7 @@ namespace FaceAuth.Services
                 }
 
                 var personGuid = await Recognize(new RecognizePersonViewModel { GroupId = personGroupId, Image = model.Image });
-                if (personGuid == Guid.Empty)
+                if (personGuid != Guid.Empty)
                 {
                     error = "This face already exists in the database.";
                     isError = true;
