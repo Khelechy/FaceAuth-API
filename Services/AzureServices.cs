@@ -56,6 +56,14 @@ namespace FaceAuth.Services
                     await faceClient.LargePersonGroup.CreateAsync(personGroupId, "TestGroupKelechiNew", recognitionModel);
                 }
 
+                var personGuid = await Recognize(new RecognizePersonViewModel { GroupId = personGroupId, Image = model.Image });
+                if (personGuid != null)
+                {
+                    error = "This face already exists in the database.";
+                    isError = true;
+                    return new Tuple<bool, string, User>(isError, error, null);
+                }
+
                 //Create person
                 var person = await faceClient.LargePersonGroupPerson.CreateAsync(personGroupId, model.Email, $"{model.FirstName + " " + model.LastName}|{model.Email}");
                 if (person == null)
